@@ -207,6 +207,13 @@ bool process_rgb_matrix(uint16_t keycode, keyrecord_t *record) {
   }
 #endif // defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && !defined(DISABLE_RGB_MATRIX_TYPING_HEATMAP)
 
+#if defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && !defined(DISABLE_RGB_MATRIX_BREATHING_HEATMAP_EX)
+  if (rgb_matrix_config.mode == RGB_MATRIX_BREATHING_HEATMAP_EX)
+  {
+    process_rgb_matrix_breathing_heatmap_ex(record);
+  }
+#endif // defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && !defined(DISABLE_RGB_MATRIX_BREATHING_HEATMAP_EX)
+
   return true;
 }
 
