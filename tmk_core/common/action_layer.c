@@ -210,6 +210,16 @@ void layer_xor(layer_state_t state) {
   layer_state_set(layer_state ^ state);
 }
 
+uint32_t layer_test(uint32_t state)
+{
+    return layer_state & state;
+}
+
+ uint32_t layer_state_make(uint8_t layer)
+{
+    return 1UL << layer;
+}
+
 /** \brief Layer debug printing
  *
  * Print out the hex value of the 32-bit layer state, as well as the value of the highest bit.
