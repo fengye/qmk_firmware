@@ -411,6 +411,9 @@ void rgb_matrix_indicators_kb(void) {}
 __attribute__((weak))
 void rgb_matrix_indicators_user(void) {}
 
+__attribute__((weak))
+void rgb_matrix_init_user(void) {}
+
 void rgb_matrix_init(void) {
   rgb_matrix_driver.init();
 
@@ -440,6 +443,8 @@ void rgb_matrix_init(void) {
     eeconfig_update_rgb_matrix_default();
   }
   eeconfig_debug_rgb_matrix(); // display current eeprom values
+
+  rgb_matrix_init_user();
 }
 
 void rgb_matrix_set_suspend_state(bool state) {

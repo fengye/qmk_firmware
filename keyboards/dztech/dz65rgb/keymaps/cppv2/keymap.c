@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             TT(WIN_LAYER), KC_LALT,  KC_LGUI,                  KC_SPC,                    KC_RGUI, KC_RALT, KC_DEL,   KC_LEFT,           KC_DOWN,   KC_RGHT),
 
         [FN_LAYER] = LAYOUT_65_ansi( /* FN & RGB */
-            KC_GRV,        KC_F1,    KC_F2,   KC_F3,  KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,  EEP_RST,    KC_VOLU,\
+            KC_GRV,        KC_F1,    KC_F2,   KC_F3,  KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,  EEP_RST,  KC_VOLU,\
             KC_CAPS,       RGB_TOG,  KC_VOLU, RGB_HUI,RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_MOD, KC_PSCR,  KC_SLCK, KC_PAUS, RESET,    KC_VOLD,\
             KC_TRNS,       KC_LEFT,  KC_VOLD, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SPI, RGB_SPD, KC_HOME,  KC_PGUP,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_MUTE, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END,  KC_PGDN,  KC_TRNS,          KC_PGUP,  KC_TRNS,\
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS,       KC_LGUI,  KC_LALT,                  KC_TRNS,                   KC_RALT, KC_RGUI, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 
         [SFT_LAYER] = LAYOUT_65_ansi( /* Shift Layer */
-            KC_TILD,       KC_TRNS,  KC_TRNS, KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DQT,  KC_QUOT_, KC_UNDS, KC_PLUS, KC_LBRC_, KC_RBRC_,\
+            KC_TILD,       KC_TRNS,  KC_DQT,  KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUOT_,KC_2,     KC_UNDS, KC_PLUS, KC_LBRC_, KC_RBRC_,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_LT,   KC_GT,   KC_DEL,   KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HASH,  KC_DLR,           KC_CMMT,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUES, KC_PTR,  KC_BSLS_, KC_TRNS,          KC_TRNS,  KC_TRNS,\
@@ -60,6 +60,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TRNS,       KC_LGUI,  KC_LALT,                  KC_TRNS,                   KC_RALT, KC_RGUI, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 };
 
+#ifdef RGB_MATRIX_ENABLE
+void rgb_matrix_init_user(void)
+{
+}
 
 void rgb_matrix_indicators_user(void)
 {
@@ -77,17 +81,26 @@ void rgb_matrix_indicators_user(void)
     rgb_matrix_set_color(winlock_led_index, 0x00, 0xFF, 0xFF);
   }
 }
+#endif
+
 
 void matrix_init_user(void)
 {
   //user initialization
-
-    rgb_matrix_set_color_all(0xff, 0xff, 0xff);
 }
 
 void matrix_scan_user(void)
 {
   //user matrix
+}
+
+void keyboard_post_init_user(void) 
+{
+  // Customise these values to desired behaviour
+  // debug_enable=true;
+  // debug_matrix=true;
+  // debug_keyboard=true;
+  // debug_mouse=true;
 }
 
 

@@ -22,6 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		    KC_TRNS,       KC_LGUI,  KC_LALT,                  KC_TRNS,                   KC_RALT, KC_RGUI, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 };
 
+#ifdef RGB_MATRIX_ENABLE
 void rgb_matrix_indicators_user(void)
 {
   if (IS_LED_ON(host_keyboard_leds(), USB_LED_CAPS_LOCK))
@@ -29,6 +30,7 @@ void rgb_matrix_indicators_user(void)
     rgb_matrix_set_color(8, 0xFF, 0xFF, 0xFF);
   }
 }
+#endif
 
 void matrix_init_user(void)
 {
@@ -39,6 +41,8 @@ void matrix_scan_user(void)
 {
   //user matrix
 }
+
+extern int8_t sendchar(uint8_t c);
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
