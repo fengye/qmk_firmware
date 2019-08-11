@@ -50,7 +50,16 @@ void process_rgb_matrix_breathing_heatmap_ex(keyrecord_t *record) {
     {
       last_keys[row][col] = DROP_TIME;
     }
-
+#ifdef CONSOLE_ENABLE
+    for (uint8_t i = 0; i < MATRIX_ROWS; ++i)
+    {
+      for (uint8_t j = 0; j < MATRIX_COLS; ++j)
+      {
+        printf("%u\t", rgb_frame_buffer[i][j]);
+      }
+      print("\n");
+    }
+#endif
 }
 
 static void refresh_frame_buffer(void)
@@ -152,13 +161,23 @@ bool BREATHING_HEATMAP_EX(effect_params_t* params) {
         last_keys[row][col] = lasting_timer - 1;
 
         uint8_t lasting_color = lasting_timer << 3;
+        fract8 interpolate = lasting_color;
         
         for (uint8_t j = 0; j < led_count; ++j)
         {
           if (!HAS_ANY_FLAGS(g_led_config.flags[led[j]], params->flags))
             continue;
 
-          rgb_matrix_set_color(led[j], lasting_color, lasting_color, lasting_color);
+          HSV hsv = { 170 - qsub8(val, 85), rgb_matrix_config.hsv.s, scale8((qadd8(170, val) - 170) * 3, rgb_matrix_config.hsv.v) };
+          hsv.v = scale8(breath, hsv.v);
+          RGB rgb = hsv_to_rgb(hsv);
+
+          uint8_t base_color = scale8(lasting_color, interpolate); 
+          rgb.r = qadd8(base_color, scale8(rgb.r, qsub8(0xff, interpolate)));
+          rgb.g = qadd8(base_color, scale8(rgb.g, qsub8(0xff, interpolate)));
+          rgb.b = qadd8(base_color, scale8(rgb.b, qsub8(0xff, interpolate))); 
+
+          rgb_matrix_set_color(led[j], rgb.r, rgb.g, rgb.b);
         }
       }
       else 

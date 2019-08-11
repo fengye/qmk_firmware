@@ -110,6 +110,9 @@ void keyboard_post_init_user(void)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
+#ifdef CONSOLE_ENABLE
+    printf("(%u, %u)=%u\n", record->event.key.col, record->event.key.row, record->event.pressed);
+#endif
     switch(keycode)
     {
         case KC_PTR:
