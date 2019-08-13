@@ -13,6 +13,7 @@ enum custom_keycodes {
   KC_QUOT_,
   KC_LBRC_,
   KC_RBRC_,
+  KC_RESET_
 };
 
 #define FN_LAYER                 1
@@ -33,20 +34,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         [FN_LAYER] = LAYOUT_65_ansi( /* FN & RGB */
             KC_GRV,        KC_F1,    KC_F2,   KC_F3,  KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,  EEP_RST,  KC_VOLU,\
-            KC_CAPS,       RGB_TOG,  KC_VOLU, RGB_HUI,RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_MOD, KC_PSCR,  KC_SLCK, KC_PAUS, RESET,    KC_VOLD,\
+            KC_CAPS,       RGB_TOG,  KC_VOLU, RGB_HUI,RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_MOD, KC_PSCR,  KC_SLCK, KC_PAUS, KC_DEL,   KC_VOLD,\
             KC_TRNS,       KC_LEFT,  KC_VOLD, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SPI, RGB_SPD, KC_HOME,  KC_PGUP,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_MUTE, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END,  KC_PGDN,  KC_TRNS,          KC_PGUP,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_MUTE,  KC_HOME,          KC_PGDN,   KC_END),
 
         [NAV_LAYER] = LAYOUT_65_ansi( /* Navigation */
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_HEAD, KC_UP,   KC_TAIL, KC_HOME,  KC_PGUP, KC_TRNS, KC_TRNS,  KC_TRNS,\
+            KC_RESET_,     KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_HEAD, KC_UP,   KC_TAIL, KC_HOME,  KC_PGUP, KC_TRNS, LSFT(KC_DEL),KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,   KC_PGDN,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_LGUI,  KC_LALT,                  KC_TRNS,                   KC_RALT, KC_RGUI, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 
         [SFT_LAYER] = LAYOUT_65_ansi( /* Shift Layer */
-            KC_TILD,       KC_TRNS,  KC_DQT,  KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUOT_,KC_2,     KC_UNDS, KC_PLUS, KC_LBRC_, KC_RBRC_,\
+            KC_TRNS,       KC_TRNS,  KC_DQT,  KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUOT_,KC_2,     KC_UNDS, KC_PLUS, KC_LBRC_, KC_RBRC_,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_LT,   KC_GT,   KC_DEL,   KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HASH,  KC_DLR,           KC_CMMT,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUES, KC_PTR,  KC_BSLS_, KC_TRNS,          KC_TRNS,  KC_TRNS,\
@@ -115,6 +116,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 #endif
     switch(keycode)
     {
+        case KC_RESET_:
+        {
+            if (record->event.pressed)
+            {
+                uint8_t mods = get_mods();
+                 if (mods & MOD_MASK_SHIFT)
+                {
+                    reset_keyboard();
+                }
+            }
+        }
+        break;
+
         case KC_PTR:
         {
             if (record->event.pressed)
