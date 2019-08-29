@@ -11,7 +11,7 @@ enum custom_keycodes {
   KC_BSLS_,
   KC_GRV_,
   KC_QUOT_,
-  KC_LBRC_,
+// KC_LBRC_,
   KC_RBRC_,
   KC_RESET_
 };
@@ -21,7 +21,7 @@ enum custom_keycodes {
 #define SFT_LAYER                3
 #define WIN_LAYER                4
 
-#define KC_TABF                  LT(NAV_LAYER, KC_TAB)
+// #define KC_TABF                  LT(NAV_LAYER, KC_TAB)
 #define KC_ESCF                  LT(NAV_LAYER, KC_ESC)
 
 
@@ -30,36 +30,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_ESCF,       KC_1,     KC_2,     KC_3,  KC_4,    KC_5,   KC_6,    KC_7,     KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,MO(FN_LAYER),KC_PGUP,\
             KC_TAB,        KC_Q,     KC_W,     KC_E,  KC_R,    KC_T,   KC_Y,    KC_U,     KC_I,    KC_O,    KC_P,     KC_LCBR,  KC_RCBR, KC_BSPC,   KC_PGDN,\
             KC_LCTL,       KC_A,     KC_S,     KC_D,  KC_F,    KC_G,   KC_H,    KC_J,     KC_K,    KC_L,    KC_SCLN,  KC_COLN,           KC_ENT,    KC_NO,\
-            KC_LSFN,       KC_Z,     KC_X,     KC_C,  KC_V,    KC_B,   KC_N,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFN,           KC_UP,     KC_NO,\
-            KC_NO,         KC_LALT,  KC_LGUI,                  KC_SPC,                    KC_RGUI, KC_RALT, KC_NO,    KC_LEFT,           KC_DOWN,   KC_RGHT),
+            KC_LSFN,       KC_Z,     KC_X,     KC_C,  KC_V,    KC_B,   KC_N,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFN,           KC_UP,     KC_LBRC,\
+            KC_NO,         KC_LALT,  KC_LGUI,                  KC_SPC,                    KC_RGUI, KC_DQUO, KC_NO,    KC_LEFT,           KC_DOWN,   KC_RGHT),
 
         [FN_LAYER] = LAYOUT_65_ansi( /* FN & RGB */
             KC_TRNS,       KC_F1,    KC_F2,   KC_F3,  KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,  KC_TRNS,  KC_HEAD,\
             KC_CAPS,       RGB_TOG,  KC_VOLU, RGB_HUI,RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_MOD, KC_PSCR,  KC_SLCK, KC_PAUS, EEP_RST,  KC_TAIL,\
-            KC_TRNS,       KC_TRNS,  KC_VOLD, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SPI, RGB_SPD, KC_HOME,  KC_PGUP,          KC_TRNS,  KC_TRNS,\
+            KC_TRNS,       KC_BRID,  KC_VOLD, KC_BRIU,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SPI, RGB_SPD, KC_HOME,  KC_PGUP,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_MUTE, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END,  KC_PGDN,  KC_TRNS,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS,                  TG(WIN_LAYER),             KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 
         [NAV_LAYER] = LAYOUT_65_ansi( /* Navigation */
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN,  KC_LBRC, KC_RBRC, KC_TRNS,  KC_HEAD,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_HEAD, KC_UP,   KC_TAIL, KC_HOME,  KC_PGUP, KC_TRNS, KC_DEL,   KC_TAIL,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_HEAD,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_HEAD, KC_UP,   KC_TAIL, KC_HOME,  KC_PGUP, KC_TRNS,LSFT(KC_DEL),KC_TAIL,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,   KC_PGDN,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_PGUP,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_RESET_,                 KC_TRNS, KC_TRNS, KC_TRNS,  KC_HEAD,          KC_PGDN,  KC_TAIL),
 
         [SFT_LAYER] = LAYOUT_65_ansi( /* Shift Layer */
-            KC_GRV,        KC_TRNS,  KC_DQT,  KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUOT_,KC_2,     KC_UNDS, KC_PLUS, KC_TRNS,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_LT,   KC_GT,LSFT(KC_DEL),KC_TRNS,\
+            KC_TRNS,       KC_TRNS,  KC_AT,   KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN,  KC_UNDS, KC_PLUS, KC_TILD,  KC_TRNS,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_LT,   KC_GT,   KC_DEL,   KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HASH,  KC_DLR,           KC_CMMT,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUES, KC_PTR,  KC_BSLS_, KC_TRNS,          KC_TRNS,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_UNDS,                   KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUES, KC_PTR,  KC_BSLS_, KC_TRNS,          KC_TRNS,  KC_RBRC_,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_UNDS,                   KC_TRNS, KC_QUOT_,KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 
         [WIN_LAYER] = LAYOUT_65_ansi( /* Windows */
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS ,KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS,\
-            KC_TRNS,       KC_LGUI,  KC_LALT,                  KC_TRNS,                   KC_RALT, KC_RGUI, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
+            KC_TRNS,       KC_LGUI,  KC_LALT,                  KC_TRNS,                   KC_RALT, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 };
 
 #ifdef RGB_MATRIX_ENABLE
@@ -79,19 +79,33 @@ void rgb_matrix_indicators_user(void)
   uint32_t layer_win_on = layer_state_make(WIN_LAYER);
   if (layer_test(layer_win_on))
   {
-    const uint8_t winlock_led_index_l = g_led_config.matrix_co[4][1];
-    rgb_matrix_set_color(winlock_led_index_l, 0x00, 0xFF, 0xFF);
+    const uint8_t gui_led_index_l = g_led_config.matrix_co[4][1];
+    rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
 
-    const uint8_t winlock_led_index_r = g_led_config.matrix_co[4][9];
-    rgb_matrix_set_color(winlock_led_index_r, 0x00, 0xFF, 0xFF);
+    const uint8_t alt_led_index_l = g_led_config.matrix_co[4][2];
+    rgb_matrix_set_color(alt_led_index_l, 0xFF, 0x00, 0xFF);
+
+    // const uint8_t gui_led_index_r = g_led_config.matrix_co[4][9];
+    // rgb_matrix_set_color(gui_led_index_r, 0x00, 0xFF, 0xFF);
+
+    const uint8_t alt_led_index_r = g_led_config.matrix_co[4][8];
+    rgb_matrix_set_color(alt_led_index_r, 0xFF, 0x00, 0xFF);
+
   }
   else
   {
-    const uint8_t maclock_led_index_l = g_led_config.matrix_co[4][2];
-    rgb_matrix_set_color(maclock_led_index_l, 0x00, 0xFF, 0xFF);
+    const uint8_t gui_led_index_l = g_led_config.matrix_co[4][2];
+    rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
 
-    const uint8_t maclock_led_index_r = g_led_config.matrix_co[4][8];
-    rgb_matrix_set_color(maclock_led_index_r, 0x00, 0xFF, 0xFF);
+    const uint8_t alt_led_index_l = g_led_config.matrix_co[4][1];
+    rgb_matrix_set_color(alt_led_index_l, 0xFF, 0x00, 0xFF);
+
+    const uint8_t gui_led_index_r = g_led_config.matrix_co[4][8];
+    rgb_matrix_set_color(gui_led_index_r, 0x00, 0xFF, 0xFF);
+
+    // const uint8_t alt_led_index_r = g_led_config.matrix_co[4][9];
+    // rgb_matrix_set_color(alt_led_index_r, 0xFF, 0x00, 0xFF);
+
   }
 }
 #endif
@@ -133,7 +147,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             if (record->event.pressed)
             {
                 uint8_t mods = get_mods();
-                if (mods & MOD_MASK_GUI)
+                if (mods & MOD_BIT(KC_LGUI))
                 {
                     reset_keyboard();
                 }
@@ -313,16 +327,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         }
         break;
 
-        case KC_LBRC_:
-        {
-            if (record->event.pressed)
-            {
-                SAVE_MODS();
-                SEND_STRING("[");  
-                RESTORE_MODS();
-            }
-        }
-        break;
+        // case KC_LBRC_:
+        // {
+        //     if (record->event.pressed)
+        //     {
+        //         SAVE_MODS();
+        //         SEND_STRING("[");  
+        //         RESTORE_MODS();
+        //     }
+        // }
+        // break;
     }
   return true;
 }
