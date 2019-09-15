@@ -13,7 +13,8 @@ enum custom_keycodes {
   KC_QUOT_,
 // KC_LBRC_,
   KC_RBRC_,
-  KC_RESET_
+  KC_RESET_,
+  KC_WIN_LAYER,
 };
 
 #define FN_LAYER                 1
@@ -38,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_CAPS,       RGB_TOG,  KC_VOLU, RGB_HUI,RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_MOD, KC_PSCR,  KC_SLCK, KC_PAUS, EEP_RST,  KC_TAIL,\
             KC_TRNS,       KC_BRID,  KC_VOLD, KC_BRIU,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_SPI, RGB_SPD, KC_HOME,  KC_PGUP,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_MUTE, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END,  KC_PGDN,  KC_TRNS,          KC_TRNS,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS,                  TG(WIN_LAYER),             KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
+            KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_WIN_LAYER,              KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 
         [NAV_LAYER] = LAYOUT_65_ansi( /* Navigation */
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_HEAD,\
@@ -63,6 +64,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 #ifdef RGB_MATRIX_ENABLE
+static void update_win_layer_rgb(void)
+{
+    const uint32_t layer_win_on = layer_state_make(WIN_LAYER);
+    if (layer_test(layer_win_on))
+    {
+        const uint8_t gui_led_index_l = g_led_config.matrix_co[4][1];
+        rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
+
+        const uint8_t alt_led_index_l = g_led_config.matrix_co[4][2];
+        rgb_matrix_set_color(alt_led_index_l, 0xFF, 0x00, 0xFF);
+
+        // const uint8_t gui_led_index_r = g_led_config.matrix_co[4][9];
+        // rgb_matrix_set_color(gui_led_index_r, 0x00, 0xFF, 0xFF);
+
+        const uint8_t alt_led_index_r = g_led_config.matrix_co[4][8];
+        rgb_matrix_set_color(alt_led_index_r, 0xFF, 0x00, 0xFF);
+
+    }
+    else
+    {
+        const uint8_t gui_led_index_l = g_led_config.matrix_co[4][2];
+        rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
+
+        const uint8_t alt_led_index_l = g_led_config.matrix_co[4][1];
+        rgb_matrix_set_color(alt_led_index_l, 0xFF, 0x00, 0xFF);
+
+        const uint8_t gui_led_index_r = g_led_config.matrix_co[4][8];
+        rgb_matrix_set_color(gui_led_index_r, 0x00, 0xFF, 0xFF);
+
+        // const uint8_t alt_led_index_r = g_led_config.matrix_co[4][9];
+        // rgb_matrix_set_color(alt_led_index_r, 0xFF, 0x00, 0xFF);
+
+    }
+}
+
 void rgb_matrix_init_user(void)
 {
 }
@@ -76,40 +112,27 @@ void rgb_matrix_indicators_user(void)
     rgb_matrix_set_color(capslock_led_index, 0xFF, 0x00, 0xFF);
   }
 
-  uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-  if (layer_test(layer_win_on))
-  {
-    const uint8_t gui_led_index_l = g_led_config.matrix_co[4][1];
-    rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
-
-    const uint8_t alt_led_index_l = g_led_config.matrix_co[4][2];
-    rgb_matrix_set_color(alt_led_index_l, 0xFF, 0x00, 0xFF);
-
-    // const uint8_t gui_led_index_r = g_led_config.matrix_co[4][9];
-    // rgb_matrix_set_color(gui_led_index_r, 0x00, 0xFF, 0xFF);
-
-    const uint8_t alt_led_index_r = g_led_config.matrix_co[4][8];
-    rgb_matrix_set_color(alt_led_index_r, 0xFF, 0x00, 0xFF);
-
-  }
-  else
-  {
-    const uint8_t gui_led_index_l = g_led_config.matrix_co[4][2];
-    rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
-
-    const uint8_t alt_led_index_l = g_led_config.matrix_co[4][1];
-    rgb_matrix_set_color(alt_led_index_l, 0xFF, 0x00, 0xFF);
-
-    const uint8_t gui_led_index_r = g_led_config.matrix_co[4][8];
-    rgb_matrix_set_color(gui_led_index_r, 0x00, 0xFF, 0xFF);
-
-    // const uint8_t alt_led_index_r = g_led_config.matrix_co[4][9];
-    // rgb_matrix_set_color(alt_led_index_r, 0xFF, 0x00, 0xFF);
-
-  }
+  update_win_layer_rgb();
+  
 }
 #endif
 
+
+
+typedef union {
+  uint32_t raw;
+  struct {
+    bool     win_layer_on :1;
+  };
+} user_config_t;
+
+static user_config_t user_config;
+
+void eeconfig_init_user(void) {  // EEPROM is getting reset! 
+  user_config.raw = 0;
+  user_config.win_layer_on = false;
+  eeconfig_update_user(user_config.raw);
+}
 
 void matrix_init_user(void)
 {
@@ -128,6 +151,15 @@ void keyboard_post_init_user(void)
   // debug_matrix=true;
   // debug_keyboard=true;
   // debug_mouse=true;
+
+  // Read the user config from EEPROM
+  user_config.raw = eeconfig_read_user();
+
+  // Set win layer, if required
+  if (user_config.win_layer_on) {
+    layer_on(WIN_LAYER);
+    send_keyboard_report();
+  }
 }
 
 
@@ -142,6 +174,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 #endif
     switch(keycode)
     {
+        case KC_WIN_LAYER:
+        {
+            if (record->event.pressed)
+            {
+                // toggle win layer, and save to eeprom
+                uint32_t layer_win_on = layer_state_make(WIN_LAYER);
+                if (layer_test(layer_win_on))
+                {
+                    layer_off(WIN_LAYER);
+                    user_config.win_layer_on = false;
+                }
+                else
+                {
+                    layer_on(WIN_LAYER);
+                    user_config.win_layer_on = true;
+                }
+                send_keyboard_report();
+                eeconfig_update_user(user_config.raw);
+            }
+        }
+        break;
+
         case KC_RESET_:
         {
             if (record->event.pressed)
