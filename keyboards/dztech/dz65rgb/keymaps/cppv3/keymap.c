@@ -29,10 +29,10 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [0] = LAYOUT_65_ansi( /* macOS */
             KC_ESCF,       KC_1,     KC_2,     KC_3,  KC_4,    KC_5,   KC_6,    KC_7,     KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,MO(FN_LAYER),KC_PGUP,\
-            KC_TAB,        KC_Q,     KC_W,     KC_E,  KC_R,    KC_T,   KC_Y,    KC_U,     KC_I,    KC_O,    KC_P,     KC_LCBR,  KC_RCBR, KC_BSPC,   KC_PGDN,\
-            KC_LCTL,       KC_A,     KC_S,     KC_D,  KC_F,    KC_G,   KC_H,    KC_J,     KC_K,    KC_L,    KC_SCLN,  KC_COLN,           KC_ENT,    KC_NO,\
-            KC_LSFN,       KC_Z,     KC_X,     KC_C,  KC_V,    KC_B,   KC_N,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFN,           KC_UP,     KC_LBRC,\
-            KC_NO,         KC_LALT,  KC_LGUI,                  KC_SPC,                    KC_RGUI, KC_DQUO, KC_NO,    KC_LEFT,           KC_DOWN,   KC_RGHT),
+            KC_TAB,        KC_Q,     KC_W,     KC_E,  KC_R,    KC_T,   KC_Y,    KC_U,     KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC, KC_BSPC,   KC_PGDN,\
+            KC_LCTL,       KC_A,     KC_S,     KC_D,  KC_F,    KC_G,   KC_H,    KC_J,     KC_K,    KC_L,    KC_SCLN,  KC_QUOT,           KC_ENT,    KC_NO,\
+            KC_LSFN,       KC_Z,     KC_X,     KC_C,  KC_V,    KC_B,   KC_N,    KC_M,     KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFN,           KC_UP,     KC_DEL,\
+            KC_NO,         KC_LALT,  KC_LGUI,                  KC_SPC,                    KC_RGUI, KC_BSLS, KC_NO,    KC_LEFT,           KC_DOWN,   KC_RGHT),
 
         [FN_LAYER] = LAYOUT_65_ansi( /* FN & RGB */
             KC_TRNS,       KC_F1,    KC_F2,   KC_F3,  KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,  KC_TRNS,  KC_HEAD,\
@@ -43,17 +43,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         [NAV_LAYER] = LAYOUT_65_ansi( /* Navigation */
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_HEAD,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_HEAD, KC_UP,   KC_TAIL, KC_HOME,  KC_PGUP, KC_TRNS,LSFT(KC_DEL),KC_TAIL,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_HEAD, KC_UP,   KC_TAIL, KC_HOME,  KC_PGUP, KC_TRNS, KC_TRNS, KC_TAIL,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,   KC_PGDN,          KC_TRNS,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,          KC_PGUP,  KC_TRNS,\
             KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_RESET_,                 KC_TRNS, KC_TRNS, KC_TRNS,  KC_HEAD,          KC_PGDN,  KC_TAIL),
 
         [SFT_LAYER] = LAYOUT_65_ansi( /* Shift Layer */
-            KC_TRNS,       KC_TRNS,  KC_AT,   KC_GRV_,KC_PIPE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN,  KC_UNDS, KC_PLUS, KC_TILD,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_LT,   KC_GT,   KC_DEL,   KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HASH,  KC_DLR,           KC_CMMT,  KC_TRNS,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_QUES, KC_PTR,  KC_BSLS_, KC_TRNS,          KC_TRNS,  KC_RBRC_,\
-            KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_UNDS,                   KC_TRNS, KC_QUOT_,KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
+            KC_GRV_,       KC_TRNS,  KC_AT,   KC_HASH,KC_DLR,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN,  KC_UNDS, KC_PLUS, KC_TILD,  KC_TRNS,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_LCBR, KC_RCBR, KC_DEL,   KC_TRNS,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_COLN,  KC_DQUO,          KC_CMMT,  KC_TRNS,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LT,   KC_GT,   KC_QUES,  KC_TRNS,          KC_TRNS,  KC_PTR,\
+            KC_TRNS,       KC_TRNS,  KC_TRNS,                  KC_UNDS,                   KC_TRNS, KC_PIPE, KC_TRNS,  KC_TRNS,          KC_TRNS,  KC_TRNS),
 
         [WIN_LAYER] = LAYOUT_65_ansi( /* Windows */
             KC_TRNS,       KC_TRNS,  KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,\
