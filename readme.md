@@ -33,3 +33,12 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 ## Official Website
 
 [qmk.fm](https://qmk.fm) is the official website of QMK, where you can find links to this page, the documentation, and the keyboards supported by QMK.
+
+
+## Note to myself (DZ65RGB)
+### To build
+$ util/docker_build.sh dztech/dz65rgb:cppv3
+
+### To flash
+- First boot keyboard into flash mode by holding Space + B while plugin USB cord
+- $ sudo ./util/flash_kbdfans.sh dztech_dz65rgb_cppv3.bin
