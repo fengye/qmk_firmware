@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x0000
+#define VENDOR_ID       0x4B42
+#define PRODUCT_ID      0x6066
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    kbdfans
 #define PRODUCT         kbd67
@@ -48,10 +48,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
+#define LED_CAPS_LOCK_PIN B2
+
 #define BACKLIGHT_PIN B6
+#ifdef BACKLIGHT_PIN
 #define BACKLIGHT_BREATHING
 #define BACKLIGHT_LEVELS 3
-
+#endif
 #define RGB_DI_PIN E2
 #ifdef RGB_DI_PIN
   #define RGBLED_NUM 20
@@ -62,6 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // #define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
 /*== all animations enable ==*/
   #define RGBLIGHT_ANIMATIONS
+  #define RGBLIGHT_SLEEP
 /*== or choose animations ==*/
   // #define RGBLIGHT_EFFECT_BREATHING
   // #define RGBLIGHT_EFFECT_RAINBOW_MOOD
