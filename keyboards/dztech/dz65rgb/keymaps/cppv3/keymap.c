@@ -66,8 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef RGB_MATRIX_ENABLE
 static void update_win_layer_rgb(void)
 {
-    const uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-    if (layer_test(layer_win_on))
+    if (layer_state_is(WIN_LAYER))
     {
         const uint8_t gui_led_index_l = g_led_config.matrix_co[4][1];
         rgb_matrix_set_color(gui_led_index_l, 0x00, 0xFF, 0xFF);
@@ -179,8 +178,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             if (record->event.pressed)
             {
                 // toggle win layer, and save to eeprom
-                uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-                if (layer_test(layer_win_on))
+                if (layer_state_is(WIN_LAYER))
                 {
                     layer_off(WIN_LAYER);
                     user_config.win_layer_on = false;
@@ -296,8 +294,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
         case KC_HEAD:
         {
-            uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-            if (layer_test(layer_win_on))
+            if (layer_state_is(WIN_LAYER))
             {
                 // Windows use HOME/END instead of ctrl+a/ctrl+e
                 if (record->event.pressed)
@@ -334,8 +331,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
         case KC_TAIL:
         {
-            uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-            if (layer_test(layer_win_on))
+            if (layer_state_is(WIN_LAYER))
             {
                 // Windows use HOME/END instead of ctrl+a/ctrl+e
                 if (record->event.pressed)

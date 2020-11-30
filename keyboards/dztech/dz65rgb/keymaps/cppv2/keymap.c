@@ -75,8 +75,7 @@ void rgb_matrix_indicators_user(void)
     rgb_matrix_set_color(capslock_led_index, 0xFF, 0x00, 0xFF);
   }
 
-  uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-  if (layer_test(layer_win_on))
+  if (layer_state_is(WIN_LAYER))
   {
     const uint8_t winlock_led_index = g_led_config.matrix_co[4][0];
     rgb_matrix_set_color(winlock_led_index, 0x00, 0xFF, 0xFF);
@@ -216,8 +215,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
         case KC_HEAD:
         {
-            uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-            if (layer_test(layer_win_on))
+            if (layer_state_is(WIN_LAYER))
             {
                 // Windows use HOME/END instead of ctrl+a/ctrl+e
                 if (record->event.pressed)
@@ -254,8 +252,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
         case KC_TAIL:
         {
-            uint32_t layer_win_on = layer_state_make(WIN_LAYER);
-            if (layer_test(layer_win_on))
+            if (layer_state_is(WIN_LAYER))
             {
                 // Windows use HOME/END instead of ctrl+a/ctrl+e
                 if (record->event.pressed)

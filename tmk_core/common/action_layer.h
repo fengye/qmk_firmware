@@ -85,9 +85,6 @@ void layer_invert(uint8_t layer);
 void          layer_or(layer_state_t state);
 void          layer_and(layer_state_t state);
 void          layer_xor(layer_state_t state);
-/* test */
-uint32_t      layer_state_make(uint8_t layer);
-uint32_t      layer_test(uint32_t state);
 layer_state_t layer_state_set_user(layer_state_t state);
 layer_state_t layer_state_set_kb(layer_state_t state);
 #else
@@ -106,8 +103,6 @@ layer_state_t layer_state_set_kb(layer_state_t state);
 #    define layer_or(state) (void)state
 #    define layer_and(state) (void)state
 #    define layer_xor(state) (void)state
-#    define layer_state_make(state) (void)state
-#    define layer_test(state) (void)state
 #    define layer_state_set_kb(state) (void)state
 #    define layer_state_set_user(state) (void)state
 #endif
