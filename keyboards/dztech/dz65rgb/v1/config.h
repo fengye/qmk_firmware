@@ -61,6 +61,10 @@
 #    define DRIVER_ADDR_2 0b1110111
 #    define DRIVER_COUNT 2
 #    define DRIVER_1_LED_TOTAL 35
+/* 
+     Original hardware provides 33 but I need two LEDs off 
 #    define DRIVER_2_LED_TOTAL 33
+*/
+#    define DRIVER_2_LED_TOTAL 31
 #    define DRIVER_LED_TOTAL (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)
 #endif
