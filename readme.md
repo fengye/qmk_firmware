@@ -37,10 +37,22 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 [qmk.fm](https://qmk.fm) is the official website of QMK, where you can find links to this page, the documentation, and the keyboards supported by QMK.
 
 
-## Note to myself (DZ65RGB)
-### To build
-$ util/docker_build.sh dztech/dz65rgb:cppv3
+## Note to myself
+### dztech/DZ65RGB
+#### To build(Intel platform)
+$ util/docker_build.sh dztech/dz65rgb/v1:cppv3
+#### To build(Raspbian like)
+$ qmk compile -kb dztech/dz65rgb/v1 -km cppv3
 
-### To flash
-- First boot keyboard into flash mode by holding Space + B while plugin USB cord
+#### To flash
+- First switch keyboard into flash mode by holding ESC + LGUI/LCommand + Space 
 - $ sudo ./util/flash_kbdfans.sh dztech_dz65rgb_cppv3.bin
+
+### massdrop/Alt
+#### To build
+- $ qmk compile -kb massdrop/alt -km fengye
+- This should produce a _massdrop_alt_fengye.bin_ in _qmk_firmware_ directory
+
+#### To flash
+- $ git clone https://github.com/Massdrop/mdloader.git && cd mdloader && make
+- $ ./build/mdloader --first --download massdrop_alt_fengye.bin --restart
